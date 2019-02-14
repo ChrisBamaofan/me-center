@@ -1,6 +1,10 @@
 package com.me.utils;
 
 
+import com.me.mysql.domain.SeckillSuccess;
+
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author zhaohaojie
  * @date 2019-01-11 17:02
@@ -29,7 +33,17 @@ public class SortUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(Integer.MAX_VALUE);
+        SeckillSuccess seckillSuccess = new SeckillSuccess();
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        concurrentHashMap.put("Key",seckillSuccess);
+        concurrentHashMap.put("String","121212");
+        concurrentHashMap.get("String");
+        concurrentHashMap.get("Key");
+
+        ThreadLocal tl = new ThreadLocal();
+        tl.set(Thread.currentThread());
+        int test = -4;
+        System.out.println(test>>>1);
     }
 }
 

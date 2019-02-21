@@ -1,8 +1,11 @@
 package com.me.utils;
 
 
+import com.me.entity.Student;
 import com.me.mysql.domain.SeckillSuccess;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -33,17 +36,30 @@ public class SortUtil {
     }
 
     public static void main(String[] args) {
-        SeckillSuccess seckillSuccess = new SeckillSuccess();
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
-        concurrentHashMap.put("Key",seckillSuccess);
-        concurrentHashMap.put("String","121212");
-        concurrentHashMap.get("String");
-        concurrentHashMap.get("Key");
-
-        ThreadLocal tl = new ThreadLocal();
-        tl.set(Thread.currentThread());
-        int test = -4;
-        System.out.println(test>>>1);
+//        SeckillSuccess seckillSuccess = new SeckillSuccess();
+//        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+//        concurrentHashMap.put("Key",seckillSuccess);
+//        concurrentHashMap.put("String","121212");
+//        concurrentHashMap.get("String");
+//        concurrentHashMap.get("Key");
+//        for (int i=0;i<10000;i++){
+////            ThreadLocal tl = new ThreadLocal();
+//            concurrentHashMap.put("Thread"+i,"数据"+i);
+//            String str = (String)concurrentHashMap.getOrDefault("Thread"+i,"Thread"+i+"未获取到数据");
+//            System.out.println(str);
+//        }
+        Student st1 = new Student();
+        st1.setName("ben");
+        Student st2 = new Student();
+        st2.setName("ben");
+        HashMap map = new HashMap();
+        HashSet set = new HashSet();
+        map.put(null,null);
+        map.put("key",null);
+        set.add(st1);
+        set.remove(st1);
+        System.out.println(map.get("key"));
+        System.out.println(map.get(null));
     }
 }
 

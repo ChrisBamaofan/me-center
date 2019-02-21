@@ -1,14 +1,7 @@
-/*
-SQLyog Community v13.1.1 (64 bit)
-MySQL - 5.7.24-log 
-*********************************************************************
-*/
-/*!40101 SET NAMES utf8 */;
-
 /**
 建测试表
  */
-create table if not exists `userinfo` (
+create table `userinfo` (
 	`userId` integer,
 	`username` varchar (6000),
 	`password` varchar (3000)

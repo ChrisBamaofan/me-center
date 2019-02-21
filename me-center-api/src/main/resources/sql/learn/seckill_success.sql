@@ -3,7 +3,7 @@
  */
  drop table `seckill_success`;
 
- CREATE TABLE if not exists `seckill_success`(
+ CREATE TABLE `seckill_success`(
  `pid` INTEGER NOT NULL AUTO_INCREMENT COMMENT '自增id',
  `productId` INTEGER NOT NULL COMMENT '商品id',
  `phoneNumber` VARCHAR(15) NOT NULL COMMENT '手机号码',

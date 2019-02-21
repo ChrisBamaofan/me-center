@@ -10,7 +10,8 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
             <property name="suppressJavaInterface" value="false"/>
         </plugin>
-        <!--<plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />-->
+        <!--解决xml重新生成时重复生成的问题 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!--<plugin type="com.tuhu.mybatis.generator.plugins.FieldDefaultValuePlugin"/>
         <plugin type="com.tuhu.mybatis.generator.plugins.FieldAnnotationPlugin"/>
         <plugin type="com.tuhu.mybatis.generator.plugins.SqlServerWithNolockPlugin" />-->

@@ -9,6 +9,7 @@
     <modules>
         <module>me-center-api</module>
         <module>me-center-integration-dao</module>
+        <module>me-test-jdk-lowVersion</module>
     </modules>
     <packaging>pom</packaging>
 

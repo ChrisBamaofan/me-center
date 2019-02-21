@@ -8,8 +8,8 @@ package com.me.concurrent;
  */
 public interface AbstractPool {
 
-    public boolean addNewTaskToQueue();
+    void addNewTaskToQueue(TaskData taskData);
 
-    public Integer getQueueSize();
+    Integer getQueueSize();
 
 }

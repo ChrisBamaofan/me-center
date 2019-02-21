@@ -21,9 +21,8 @@ public class BaseControlController {
     @Autowired
     private BaseControlMapper baseControlMapper;
 
-    @PostMapping("/BaseControl/update")
+    @PostMapping("/baseControl/update")
     public void updateBaseControl(@RequestBody BaseControl baseControl){
-
     }
 
     @GetMapping("/baseControl/get")

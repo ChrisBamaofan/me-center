@@ -1,5 +1,5 @@
 --商品表
-CREATE TABLE `goodsInfo` (
+create table if not exists `goodsInfo` (
 `pid` INTEGER NOT NULL AUTO_INCREMENT COMMENT '自增id',
 `productName` VARCHAR(20) NOT NULL COMMENT '商品名称',
 `goodsType` VARCHAR(10) NOT NULL COMMENT '商品类型',

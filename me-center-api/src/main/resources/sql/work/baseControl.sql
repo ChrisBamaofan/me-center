@@ -1,7 +1,7 @@
 /**
  * 控件表
  */
-create table `baseControl`(
+create table if not exists `baseControl`(
   `pid` integer not null auto_increment comment '主键',
   `templateID` integer not null default 0 comment '模板id',
   `labelName` nvarchar(600) not null default '' comment '控件名称',

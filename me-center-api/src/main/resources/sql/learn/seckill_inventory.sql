@@ -1,5 +1,5 @@
 --秒杀库存表
-create table `seckill_inventory` (
+create table  if not exists `seckill_inventory` (
   `pid` integer not null auto_increment comment '自增id',
 	`productId` integer not null comment'商品id',
 	`productName` varchar (6000) not null default '默认名称'comment'商品名称',

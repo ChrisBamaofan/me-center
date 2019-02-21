@@ -1,7 +1,7 @@
 /**
 建测试表
  */
-create table `userinfo` (
+create table if not exists  `userinfo` (
 	`userId` integer,
 	`username` varchar (6000),
 	`password` varchar (3000)

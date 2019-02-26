@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.me.mysql.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="com.me.mysql.domain.UserInfo">
+    <id column="pid" jdbcType="INTEGER" property="pid" />
     <result column="userId" jdbcType="INTEGER" property="userId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userId, username, password
+    pid, userId, username, password
   </sql>
   <select id="selectByExample" parameterType="com.me.mysql.domain.UserInfoExample" resultMap="BaseResultMap">
     select
@@ -81,19 +82,34 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.me.mysql.domain.UserInfoExample">
     delete from userinfo
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="userId" keyProperty="userId" parameterType="com.me.mysql.domain.UserInfo" useGeneratedKeys="true">
-    insert into userinfo (username, password)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  <insert id="insert" keyColumn="pid" keyProperty="pid" parameterType="com.me.mysql.domain.UserInfo" useGeneratedKeys="true">
+    insert into userinfo (userId, username, password
+      )
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="userId" keyProperty="userId" parameterType="com.me.mysql.domain.UserInfo" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="pid" keyProperty="pid" parameterType="com.me.mysql.domain.UserInfo" useGeneratedKeys="true">
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        userId,
+      </if>
       <if test="username != null">
         username,
       </if>
@@ -102,6 +118,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
@@ -119,6 +138,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update userinfo
     <set>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
       <if test="record.userId != null">
         userId = #{record.userId,jdbcType=INTEGER},
       </if>
@@ -135,11 +157,34 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update userinfo
-    set userId = #{record.userId,jdbcType=INTEGER},
+    set pid = #{record.pid,jdbcType=INTEGER},
+      userId = #{record.userId,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.me.mysql.domain.UserInfo">
+    update userinfo
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.me.mysql.domain.UserInfo">
+    update userinfo
+    set userId = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where pid = #{pid,jdbcType=INTEGER}
   </update>
 </mapper>

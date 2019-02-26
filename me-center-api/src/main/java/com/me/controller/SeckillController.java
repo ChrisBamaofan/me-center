@@ -1,10 +1,14 @@
 package com.me.controller;
 
+import com.me.auth.annotation.SkipAuthentication;
 import com.me.entity.SeckillResult;
 import com.me.entity.SeckillUrlExposer;
+import com.me.mysql.domain.SeckillInventory;
 import com.me.service.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -36,8 +40,14 @@ public class SeckillController {
      * @date : 2019/2/9 21:36
      */
     @PostMapping("/execute")
+    @SkipAuthentication
     public SeckillResult seckillExecute(@RequestParam String MD5, @RequestParam Integer productId, @RequestParam String phoneNumber) {
         return seckillService.seckillExecute(MD5, productId, phoneNumber);
+    }
+
+    @GetMapping("/seckillInventorys")
+    public List<SeckillInventory> getSeckillInventory(){
+        return seckillService.getSeckillInventoryList();
     }
 
 }

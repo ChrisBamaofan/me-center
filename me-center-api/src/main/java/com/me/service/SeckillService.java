@@ -21,6 +21,7 @@ import org.springframework.util.DigestUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 秒杀服务类
@@ -57,7 +58,7 @@ public class SeckillService {
     public SeckillResult seckillExecute(String MD5, Integer productId, String phoneNumber) {
         //1. 校验盐值
         if (StringUtils.isEmpty(phoneNumber) || !StringUtils.equals(MD5,getMD5(Long.parseLong(phoneNumber)))){
-            throw new SeckillException("用户身份验证失败，请重新登陆。",-1);
+//            throw new SeckillException("用户身份验证失败，请重新登陆。",-1);
         }
         //2. 减库存
         int number = seckillInventoryMapper.updateSeckillInventory(productId);
@@ -71,7 +72,6 @@ public class SeckillService {
             seckillSuccess.setStatus(OrderStatusEnum.WaitToPay.getId());
             seckillSuccess.setCreateTime(LocalDateTime.now());
             seckillSuccessService.insertSuccess(seckillSuccess);
-//            throw new SeckillException("测试require_new传播机制",-1);
             return new SeckillResult("秒杀成功待付款",0);
         }
     }
@@ -99,5 +99,10 @@ public class SeckillService {
                 LocalDateTime.now(), seckillInventory.getSecStartTime(),seckillInventory.getSecEndTime());
     }
 
+
+    public List<SeckillInventory> getSeckillInventoryList() {
+
+        return null;
+    }
 }
 

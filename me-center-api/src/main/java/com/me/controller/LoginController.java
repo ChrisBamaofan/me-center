@@ -28,5 +28,6 @@ public class LoginController {
     public UserInfo login(@PathVariable("id") Integer id, @AuthenticationParam String userEmail){
         return userInfoService.getUserInfo(id);
     }
+
 }
 

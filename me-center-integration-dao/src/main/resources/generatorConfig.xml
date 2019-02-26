@@ -55,12 +55,6 @@
         </table>
 
 
-
-        <table tableName="userInfo" domainObjectName="UserInfo">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="userId" sqlStatement="JDBC" identity="true"/>
-        </table>
-
         <table tableName="goodsInfo" domainObjectName="GoodsInfo">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
@@ -74,13 +68,17 @@
             <columnOverride column="secEndTime" javaType="java.time.LocalDateTime"/>
             <columnOverride column="modifyTime" javaType="java.time.LocalDateTime"/>
         </table>
-        -->
-
         <table tableName="seckill_success" domainObjectName="SeckillSuccess">
             <property name="useActualColumnNames" value="true"/>
-            <!--<generatedKey column="pid" sqlStatement="JDBC" identity="true"/>-->
+            <<generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
 
-            <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+        <columnOverride column="createTime" javaType="java.time.LocalDateTime"/>
+    </table>
+        -->
+
+        <table tableName="userInfo" domainObjectName="UserInfo">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="pid" sqlStatement="JDBC" identity="true"/>
         </table>
 
     </context>

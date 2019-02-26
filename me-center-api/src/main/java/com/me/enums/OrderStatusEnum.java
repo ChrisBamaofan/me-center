@@ -3,6 +3,9 @@ package com.me.enums;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 订单状态
  *
@@ -29,11 +32,15 @@ public enum OrderStatusEnum {
         this.id = id;
     }
 
-    public static String getStringById(){
-//        for (OrderStatusEnum status:values()){
-//            if ()
-//        }
+    public static String getValueById(Integer id){
+        for(OrderStatusEnum statusEnum:values()){
+            if (statusEnum.id.equals(id)){
+                return statusEnum.status;
+            }
+            return null;
+        }
         return null;
     }
+
 }
 

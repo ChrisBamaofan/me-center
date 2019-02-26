@@ -3,6 +3,8 @@ package com.me.mysql.domain;
 import java.io.Serializable;
 
 public class UserInfo implements Serializable {
+    private Integer pid;
+
     private Integer userId;
 
     private String username;
@@ -10,6 +12,14 @@ public class UserInfo implements Serializable {
     private String password;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
 
     public Integer getUserId() {
         return userId;

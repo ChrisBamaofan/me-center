@@ -6,6 +6,7 @@ import com.me.mysql.domain.SeckillSuccess;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -55,10 +56,11 @@ public class SortUtil {
         HashMap map = new HashMap();
         HashSet set = new HashSet();
         map.put(null,null);
-        map.put("key",null);
+        map.put("key",123);
         set.add(st1);
-        set.remove(st1);
-        System.out.println(map.get("key"));
+        set.add("123");
+
+        Hashtable table = new Hashtable();
         System.out.println(map.get(null));
     }
 }

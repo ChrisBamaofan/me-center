@@ -10,13 +10,21 @@ public interface UserInfoMapper {
 
     int deleteByExample(UserInfoExample example);
 
+    int deleteByPrimaryKey(Integer pid);
+
     int insert(UserInfo record);
 
     int insertSelective(UserInfo record);
 
     List<UserInfo> selectByExample(UserInfoExample example);
 
+    UserInfo selectByPrimaryKey(Integer pid);
+
     int updateByExampleSelective(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
 
     int updateByExample(@Param("record") UserInfo record, @Param("example") UserInfoExample example);
+
+    int updateByPrimaryKeySelective(UserInfo record);
+
+    int updateByPrimaryKey(UserInfo record);
 }

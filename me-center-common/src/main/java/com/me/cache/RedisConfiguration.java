@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     @Bean(RedisCacheManager)
     public CacheManager cacheManager(RedisTemplate<Object, Object> redisTemplate) {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        //设置value的序列化器
+        GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         cacheManager.setUsePrefix(true);
         cacheManager.setExpires(RedisExpire.mapValues());

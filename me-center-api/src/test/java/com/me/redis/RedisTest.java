@@ -34,10 +34,7 @@ public class RedisTest {
             Map.Entry mo = (Map.Entry)m;
             log.debug(mo.getKey()+","+mo.getValue());
         }
-
         log.debug("has mapo'武侠'天龙八部' key "+redisComponent.hasKey("wuxia","r1"));
-//        log.debug("redisComponent.removeHashKey(\"天龙八部2\") is "+redisComponent.removeHashKey("wuxia","e1"));
-//        log.debug("redisComponent.removeHashKey(\"天龙八部\") is "+redisComponent.removeHashKey("wuxia","r1"));
     }
 }
 

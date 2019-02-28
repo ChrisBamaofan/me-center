@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019-01-24 17:49
  */
 @RestController
-@RequestMapping("/seckill")
+@RequestMapping(path = "/seckill")
 public class SeckillController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class SeckillController {
      * @author : zhaohaojie
      * @date : 2019/2/7 19:25
      */
-    @GetMapping("/getUrl")
+    @GetMapping(path= "/getUrl")
     public SeckillUrlExposer getSeckillUrl(String phone ,Integer productId) {
         return seckillService.getSeckillUrlExposer(Long.parseLong(phone),productId);
     }
@@ -39,13 +39,13 @@ public class SeckillController {
      * @author : zhaohaojie
      * @date : 2019/2/9 21:36
      */
-    @PostMapping("/execute")
+    @PostMapping(path= "/execute")
     @SkipAuthentication
     public SeckillResult seckillExecute(@RequestParam String MD5, @RequestParam Integer productId, @RequestParam String phoneNumber) {
         return seckillService.seckillExecute(MD5, productId, phoneNumber);
     }
 
-    @GetMapping("/seckillInventorys")
+    @GetMapping(path= "/seckillInventorys")
     public List<SeckillInventory> getSeckillInventory(){
         return seckillService.getSeckillInventoryList();
     }

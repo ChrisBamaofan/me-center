@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisKey {
 
-    public final static String PreFixKey = "Com.Me";
+    public final static String PreFixKey = "Com.Me.";
 
-    public final static String UserInfo = PreFixKey+"UserInfo.";
+    public final static String UserInfo = PreFixKey+"UserInfo";
 
 }
 

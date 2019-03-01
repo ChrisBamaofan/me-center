@@ -12,10 +12,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
 @Configuration
 @EnableCaching
 @EnableConfigurationProperties(value = CacheProperties.class)
-public class RedisConfiguration extends CachingConfigurerSupport {
+public class RedisCacheConfiguration extends CachingConfigurerSupport {
 
     public static final String RedisCacheManager = "redisCacheManager";
 
@@ -46,9 +44,9 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         cacheManager.setUsePrefix(true);
-        cacheManager.setExpires(RedisExpire.mapValues());
+        cacheManager.setExpires(RedisCacheExpire.mapValues());
         List<String> cacheNames = cacheProperties.getCacheNames();
-        for (RedisExpire expire:RedisExpire.values()){
+        for (RedisCacheExpire expire: RedisCacheExpire.values()){
             cacheNames.add(expire.getCacheName());
         }
         if (cacheNames.size()>0){

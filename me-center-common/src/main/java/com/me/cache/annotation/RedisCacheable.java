@@ -1,7 +1,7 @@
 package com.me.cache.annotation;
 
-import com.me.cache.RedisConfiguration;
-import com.me.cache.RedisKey;
+import com.me.cache.RedisCacheConfiguration;
+import com.me.cache.RedisCacheKey;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.annotation.AliasFor;
 
@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Inherited
 @Documented
-@Cacheable(cacheNames = RedisKey.PreFixKey,cacheManager = RedisConfiguration.RedisCacheManager)
+@Cacheable(cacheNames = RedisCacheKey.PreFixKey,cacheManager = RedisCacheConfiguration.RedisCacheManager)
 public @interface RedisCacheable {
 
     /**

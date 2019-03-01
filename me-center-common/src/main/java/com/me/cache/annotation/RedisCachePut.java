@@ -1,12 +1,9 @@
 package com.me.cache.annotation;
 
-import com.me.cache.RedisConfiguration;
-import com.me.cache.RedisKey;
-import org.springframework.cache.annotation.CacheEvict;
+import com.me.cache.RedisCacheConfiguration;
+import com.me.cache.RedisCacheKey;
 import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.annotation.AliasFor;
-import org.springframework.data.redis.cache.RedisCacheManager;
 
 import java.lang.annotation.*;
 
@@ -14,7 +11,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.TYPE})
 @Inherited
 @Documented
-@CachePut(value = RedisKey.PreFixKey,cacheManager = RedisConfiguration.RedisCacheManager)
+@CachePut(value = RedisCacheKey.PreFixKey,cacheManager = RedisCacheConfiguration.RedisCacheManager)
 public @interface RedisCachePut {
 
     /**

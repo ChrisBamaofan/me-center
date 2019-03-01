@@ -1,6 +1,5 @@
 package com.me.concurrent.javaConcurrentAnimated;
 
-import com.me.entity.Student;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,9 +26,6 @@ public class laucher {
         System.out.println(set.remove("value;"));;
         System.out.println(hashtable.get(key));
         ExecutorService service = Executors.newCachedThreadPool();
-        ThreadLocal<Student> tl = new ThreadLocal<>();
-        tl.get();
-        tl.set(null);
     }
 }
 

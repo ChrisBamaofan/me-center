@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-02-25 22:58
  */
 @Component
-public class RedisKey {
+public class RedisCacheKey {
 
     public final static String PreFixKey = "Com.Me.";
 

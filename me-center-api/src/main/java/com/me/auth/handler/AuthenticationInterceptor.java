@@ -2,11 +2,18 @@ package com.me.auth.handler;
 
 import com.me.auth.annotation.SkipAuthentication;
 import com.me.service.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
 
 /**
  * 拦截器实现类
@@ -24,6 +31,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         this.userInfoService = userInfoService;
     }
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
     /**
      * 拦截请求并校验 邮箱和加密串匹配度
      * @param request
@@ -42,6 +51,16 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         String encryptKey = request.getHeader(ENCRYPTION_KEY);
 
         //TODO 做相应的二次处理，将加密串解密
+
+        // 将手机号对应的 ip 存入 session中，表示登陆中，
+        HttpSession session = request.getSession();
+        Cookie[] cookie = request.getCookies();
+        InetAddress address = InetAddress.getLocalHost();
+        String hostAddress = address.getHostAddress();
+        HttpSession result = (HttpSession) stringRedisTemplate.opsForHash().get("IP_Bound_Session",userEmail+hostAddress);
+        if (result == null){
+            stringRedisTemplate.opsForHash().put("IP_Bound_Session",userEmail+hostAddress,session);
+        }
 
         //这里直接调用controller层
         return super.preHandle(request, response, handler);

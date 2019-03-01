@@ -21,7 +21,7 @@ public class MyPool extends ThreadPoolExecutor implements AbstractPool {
 
     public void init(){
         pool = new ThreadPoolExecutor(poolParam.getCorePoolSize(),poolParam.getMaxPoolSize(),poolParam.getMaxPoolSize(),
-                TimeUnit.SECONDS,queue,new ThreadPoolExecutor.CallerRunsPolicy());
+                TimeUnit.SECONDS,queue,new CallerRunsPolicy());
         queue = new LinkedBlockingQueue();
     }
 

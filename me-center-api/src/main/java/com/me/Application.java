@@ -15,11 +15,11 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author zhaohaojie
  * @date 2018-12-29 11:47
  */
-@SpringBootApplication
-@EnableAuthentication
-@EnableMorphedResponse
-@EnableCaching
-@MapperScan(basePackages = "com.me.mysql.mapper")
+@SpringBootApplication//标记为是一个spring boot启动类
+@EnableAuthentication//使用登陆身份认证
+@EnableMorphedResponse//启动统一格式返回拦截器
+@EnableCaching//启动缓存
+@MapperScan(basePackages = "com.me.mysql.mapper")//整合mybatis扫描mapper接口到bean容器
 //@ServletComponentScan
 public class Application {
 

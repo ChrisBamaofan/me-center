@@ -31,11 +31,15 @@ public class MapSetTable {
         set.add(456);
         System.out.println(set.size());
         set.remove(123);
-
+LinkedHashMap map1 = new LinkedHashMap();
+map1.put("12","12");
         Hashtable hashtable = new Hashtable();
         hashtable.put("",123);
-
 //        map = Collections.synchronizedMap(map);
+LinkedHashSet set1 = new LinkedHashSet();
+set1.add(12);
+        TreeMap treeMap = new TreeMap();
+        treeMap.put("bname","ben");
     }
 
     static int hash(int h) {

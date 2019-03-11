@@ -10,7 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * 通过springboot自带的线程池机制来跑异步任务
+ * 通过 springboot 自带的线程池机制来跑异步任务
  * @author zhaohaojie
  * @date 2019-02-14 11:43
  */

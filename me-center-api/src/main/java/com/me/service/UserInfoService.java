@@ -35,7 +35,6 @@ public class UserInfoService {
         UserInfoExample userInfoExample = new UserInfoExample();
         userInfoExample.createCriteria().andUserIdEqualTo(userId);
         List<UserInfo> list = userInfoMapper.selectByExample(userInfoExample);
-        log.debug("result is "+JSONObject.toJSONString(list));
         return list.stream().findFirst().orElse(new UserInfo());
     }
 

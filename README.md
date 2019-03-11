@@ -12,11 +12,9 @@
 ``见表语句保存在userInfo.sql文件中``
 
 ##运行项目
-``找到Application.java然后运行即可。``
+找到Application.java然后运行即可。
 
 ##后续添加的功能
 `mybatis多数据源配置模块`
-`mybatis generator 自动生成代码 并优化部分该插件的功能，如果必要的话`
-`身份认证功能`
 `日志`
 `可能演变成大数据系统的一部分`

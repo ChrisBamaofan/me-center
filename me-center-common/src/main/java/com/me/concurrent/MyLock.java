@@ -1,42 +1,126 @@
 package com.me.concurrent;
 
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import jdk.nashorn.internal.codegen.types.Type;
+import jdk.nashorn.internal.ir.Optimistic;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.*;
 
 /**
  * @author zhaohaojie
- * @date 2019-03-01 19:03
+ * @date 2019-03-06 22:04
  */
-public class MyLock extends AbstractQueuedSynchronizer {
+public class MyLock implements Lock {
 
-    private int state=0;
+    private final Sync sync = new Sync();
+    ReadWriteLock lock = new ReentrantReadWriteLock();
+    Lock lock2  = new Lock() {
+        @Override
+        public void lock() {
 
-    protected MyLock() {
-        super();
+        }
+
+        @Override
+        public void lockInterruptibly() throws InterruptedException {
+
+        }
+
+        @Override
+        public boolean tryLock() {
+            return false;
+        }
+
+        @Override
+        public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+            return false;
+        }
+
+        @Override
+        public void unlock() {
+
+        }
+
+        @Override
+        public Condition newCondition() {
+            return null;
+        }
+    };
+    public static class Sync extends AbstractQueuedSynchronizer{
+
+        //是否被其他线程占用
+        protected boolean isHeldByOtherThread(){
+            return getState()==1;
+        }
+
+        //在调用Lock的acquire方法时调用到tryAcquire
+        @Override
+        protected boolean tryAcquire(int arg) {
+
+            if (compareAndSetState(0,1)){
+                setExclusiveOwnerThread(Thread.currentThread());
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        protected boolean tryRelease(int arg) {
+            if (getState() == 0){
+                throw new IllegalMonitorStateException();
+            }
+            //释放锁
+            setExclusiveOwnerThread(null);
+            //状态改为0
+            setState(0);
+            return true;
+        }
+
+        //每个condition包含一个condition队列
+        Condition newCondition(){
+            return new ConditionObject();
+        }
     }
 
     @Override
-    protected boolean tryAcquire(int arg) {
-        return super.tryAcquire(arg);
+    public void lock() {
+        sync.acquire(1);
     }
 
     @Override
-    protected boolean tryRelease(int arg) {
-        return super.tryRelease(arg);
+    public boolean tryLock() {
+        return sync.tryAcquire(1);
     }
 
     @Override
-    protected int tryAcquireShared(int arg) {
-        return super.tryAcquireShared(arg);
+    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+        return sync.tryAcquireNanos(1,unit.toNanos(time));
     }
 
     @Override
-    protected boolean tryReleaseShared(int arg) {
-        return super.tryReleaseShared(arg);
+    public void lockInterruptibly() throws InterruptedException {
+        sync.acquireInterruptibly(1);
     }
 
     @Override
-    protected boolean isHeldExclusively() {
-        return super.isHeldExclusively();
+    public void unlock() {
+        sync.release(1);
+    }
+
+    @Override
+    public Condition newCondition() {
+        return sync.newCondition();
+    }
+
+    public boolean isLocked(){
+        return sync.isHeldByOtherThread();
+    }
+
+    public int getQueuedLength(){
+        return sync.getQueueLength();
+    }
+
+    public int getWaitQueuedLength(AbstractQueuedSynchronizer.ConditionObject condition){
+        return sync.getWaitQueueLength(condition);
     }
 }
 

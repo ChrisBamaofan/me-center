@@ -4,6 +4,8 @@ import com.me.concurrent.MyLock;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author zhaohaojie
@@ -13,6 +15,8 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 public class SeckillProductRemain {
     private static Integer number =100;
     public MyLock lock =new MyLock();
+    private ReentrantLock lock2 = new ReentrantLock();
+    private ReentrantReadWriteLock lock3 = new ReentrantReadWriteLock();
     public SeckillProductRemain(){
 //        lock = ;
     }

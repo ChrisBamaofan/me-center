@@ -14,37 +14,7 @@ public class MyLock implements Lock {
 
     private final Sync sync = new Sync();
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    Lock lock2  = new Lock() {
-        @Override
-        public void lock() {
 
-        }
-
-        @Override
-        public void lockInterruptibly() throws InterruptedException {
-
-        }
-
-        @Override
-        public boolean tryLock() {
-            return false;
-        }
-
-        @Override
-        public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-            return false;
-        }
-
-        @Override
-        public void unlock() {
-
-        }
-
-        @Override
-        public Condition newCondition() {
-            return null;
-        }
-    };
     public static class Sync extends AbstractQueuedSynchronizer{
 
         //是否被其他线程占用

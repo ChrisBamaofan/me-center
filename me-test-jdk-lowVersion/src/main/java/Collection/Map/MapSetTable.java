@@ -12,34 +12,40 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class MapSetTable {
 
     public static void main(String[] args) {
-        List<String> strings = new CopyOnWriteArrayList<String>();
-        strings.add("1231");
-        strings.add("1232");
-        strings.add("2223");
-        strings.add(null);
-        System.out.println(strings.size()+"get0 = "+strings.get(3));
-
-        ReadWriteLock lock = new ReentrantReadWriteLock();
-        HashMap map = new HashMap();
-        map.put("",123);
-        Integer ig = Integer.valueOf(123);
-        System.out.println(ig.hashCode());
-        System.out.println(hash(ig.hashCode()));
-        HashSet set= new HashSet();
-        set.add(123);
-        set.add(234);
-        set.add(456);
-        System.out.println(set.size());
-        set.remove(123);
-LinkedHashMap map1 = new LinkedHashMap();
-map1.put("12","12");
-        Hashtable hashtable = new Hashtable();
-        hashtable.put("",123);
-//        map = Collections.synchronizedMap(map);
-LinkedHashSet set1 = new LinkedHashSet();
-set1.add(12);
+//        List<String> strings = new CopyOnWriteArrayList<String>();
+//        strings.add("1231");
+//        strings.add("1232");
+//        strings.add("2223");
+//        strings.add(null);
+//        System.out.println(strings.size()+"get0 = "+strings.get(3));
+//
+//        ReadWriteLock lock = new ReentrantReadWriteLock();
+//        HashMap map = new HashMap();
+//        map.put("",123);
+//        Integer ig = Integer.valueOf(123);
+//        System.out.println(ig.hashCode());
+//        System.out.println(hash(ig.hashCode()));
+//        HashSet set= new HashSet();
+//        set.add(123);
+//        set.add(234);
+//        set.add(456);
+//        System.out.println(set.size());
+//        set.remove(123);
+        LinkedHashMap map1 = new LinkedHashMap();
+        map1.put("12","12");
+        map1.get("12");
+        Collections.synchronizedMap(map1);
+//        Hashtable hashtable = new Hashtable();
+//        hashtable.put("",123);
+////        map = Collections.synchronizedMap(map);
+//        LinkedHashSet set1 = new LinkedHashSet();
+//        set1.add(12);
         TreeMap treeMap = new TreeMap();
-        treeMap.put("bname","ben");
+        treeMap.put("key1",1);
+        treeMap.put("key2",2);
+        treeMap.put("key3",3);
+        treeMap.put("key4",4);
+        treeMap.get("keys1");
     }
 
     static int hash(int h) {
@@ -50,4 +56,5 @@ set1.add(12);
         return h ^ (h >>> 7) ^ (h >>> 4);
     }
 }
+
 

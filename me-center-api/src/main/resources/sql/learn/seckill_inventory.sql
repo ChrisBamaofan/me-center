@@ -10,13 +10,13 @@ create table  if not exists `seckill_inventory` (
 	`createTime` datetime not null default current_timestamp comment'创建时间',
 	`modifyTime` datetime not null default current_timestamp comment'更新时间',
 	primary key (`pid`),
-	key index_productid(`productId`),
+	key index_productid (`productId`),
 	key index_starttime (`secStartTime`),
 	key index_endtime (`secEndTime`),
 	key index_createtime (`createTime`)
 )ENGINE=InnoDB AUTO_INCREMENT=1000 default charset=utf8 comment '秒杀库存表';
 
---插入库存数据
+-- 插入库存数据
 insert into seckill_inventory (productId,productName,productNumber,price,secStartTime,secEndTime)
 values (1000,'2000抢华为mate20',100,2000.00,'2019-02-01 11:30:00','2019-02-02 23:59:59'),
 (1001,'1000抢 华为mate10',200,1000.00,'2019-02-01 11:30:00','2019-02-02 23:59:59'),

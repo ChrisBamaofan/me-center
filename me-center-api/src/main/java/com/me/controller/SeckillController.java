@@ -5,6 +5,8 @@ import com.me.entity.SeckillResult;
 import com.me.entity.SeckillUrlExposer;
 import com.me.mysql.domain.SeckillInventory;
 import com.me.service.SeckillService;
+import com.me.spring.web.handler.annotation.MorphedResponse;
+import com.sun.net.httpserver.HttpServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,8 @@ import java.util.List;
  * @date 2019-01-24 17:49
  */
 @RestController
-@RequestMapping(path = "/seckill")
+@MorphedResponse
+@RequestMapping(path = "/me/center/seckill")
 public class SeckillController {
 
     @Autowired
@@ -46,6 +49,7 @@ public class SeckillController {
     }
 
     @GetMapping(path= "/seckillInventorys")
+    @SkipAuthentication
     public List<SeckillInventory> getSeckillInventory(){
         return seckillService.getSeckillInventoryList();
     }

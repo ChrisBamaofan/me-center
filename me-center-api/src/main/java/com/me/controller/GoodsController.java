@@ -1,5 +1,6 @@
 package com.me.controller;
 
+import com.me.auth.annotation.SkipAuthentication;
 import com.me.mysql.domain.GoodsInfo;
 import com.me.service.GoodsService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @GetMapping("/getGoodsInfoByGoodsId/{id}")
+    @SkipAuthentication
     public GoodsInfo getGoodsInfoByGoodsId(@PathVariable("id") Integer id){
         log.debug("test for debugging.");
         return goodsService.getGoodsInfoByGoodsId(id);

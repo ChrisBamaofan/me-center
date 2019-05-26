@@ -2,6 +2,7 @@ package com.me.configuration;
 
 import com.me.controller.SeckillController;
 import com.me.entity.SeckillResult;
+import com.me.mysql.domain.SeckillInventory;
 import com.me.mysql.mapper.extension.SeckillInventoryMapper;
 import com.me.service.SeckillService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 /**
  * @author zhaohaojie
@@ -33,6 +36,8 @@ public class SeckillTest {
     public void updateInventoryTest(){
         int number = seckillInventoryExtMapper.updateSeckillInventory(1001);
         log.debug("update number is "+number);
+        List<SeckillInventory> list = seckillInventoryExtMapper.getInventorys("Seckill_Inventory");
+        log.debug("list .size is "+list.size());
     }
 
     @Test

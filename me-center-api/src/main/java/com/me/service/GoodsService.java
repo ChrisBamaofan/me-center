@@ -16,6 +16,7 @@ public class GoodsService {
     private GoodsInfoMapper goodsInfoMapper;
 
     public GoodsInfo getGoodsInfoByGoodsId(Integer id){
+
         return goodsInfoMapper.selectByPrimaryKey(id);
     }
 }

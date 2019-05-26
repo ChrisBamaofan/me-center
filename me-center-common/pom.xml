@@ -10,7 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>me-center-common</artifactId>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -23,12 +34,27 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.54</version>
         </dependency>
-
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.redisson</groupId>-->
             <!--<artifactId>redisson</artifactId>-->
             <!--<version>3.10.3</version>-->
         <!--</dependency>-->
+        <!-- java8 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.8</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
     </dependencies>
 </project>

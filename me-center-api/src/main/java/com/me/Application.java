@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 
 /**
@@ -20,7 +21,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableMorphedResponse//启动统一格式返回拦截器
 @EnableCaching//启动缓存
 @MapperScan(basePackages = "com.me.mysql.mapper")//整合mybatis扫描mapper接口到bean容器
-//@ServletComponentScan
+@EnableEurekaClient
 public class Application {
 
     public static void main(String[] args) {

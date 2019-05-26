@@ -1,9 +1,11 @@
 package com.me.configuration.MQConfigs;
 
+import com.me.mysql.domain.SeckillSuccess;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQSession;
 import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jms.JmsProperties;
@@ -16,7 +18,10 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
+import javax.annotation.Resource;
 import javax.jms.*;
+import java.util.Properties;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * @author zhaohaojie
@@ -25,13 +30,26 @@ import javax.jms.*;
 @Configuration
 public class JMSConfiguration {
 
-    @Bean
+    @Bean(value = "queue1")
     public Queue queue(){
         ActiveMQQueue queue = new ActiveMQQueue("queue1");
         queue.setDLQ();
         return queue;
     }
 
+    @Bean(value = "topic1")
+    public Topic topic(){
+        ActiveMQTopic topic1 = new ActiveMQTopic("topic1");
+        Properties properties = new Properties();
+
+        topic1.setProperties(properties);
+        return topic1;
+    }
+
+    /**
+     * 配置消息消费失败后的重发策略
+     * @return
+     */
     @Bean
     public RedeliveryPolicy redeliveryPolicy(){
         RedeliveryPolicy  redeliveryPolicy=   new RedeliveryPolicy();
@@ -68,8 +86,26 @@ public class JMSConfiguration {
         jmsTemplate.setConnectionFactory(activeMQConnectionFactory);
         jmsTemplate.setDefaultDestination(queue); //此处可不设置默认，在发送消息时也可设置队列
         jmsTemplate.setSessionAcknowledgeMode(ActiveMQSession.INDIVIDUAL_ACKNOWLEDGE);//客户端签收模式
+        jmsTemplate.setTimeToLive(1000);
         return jmsTemplate;
     }
+
+    public static void main(String[] args) {
+//        SeckillSuccess s1 = new SeckillSuccess();
+//        SeckillSuccess s2 = new SeckillSuccess();
+//        System.out.println(s1 == s2);
+//        System.out.println(s1.equals(s2));
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("123");
+            }
+        });
+        t1.start();
+        t1.run();
+        System.out.println("345");
+    }
+
 
     //定义一个消息监听器连接工厂，这里定义的是点对点模式的监听器连接工厂
     @Bean(name = "jmsQueueListener")
@@ -82,6 +118,8 @@ public class JMSConfiguration {
         //重连间隔时间
         factory.setRecoveryInterval(1000L);
         factory.setSessionAcknowledgeMode(ActiveMQSession.INDIVIDUAL_ACKNOWLEDGE);
+
+
         return factory;
     }
 }

@@ -31,7 +31,7 @@ public class LoginController {
     private Jackson2ObjectMapperBuilder builder;
     @GetMapping("/login/{id}")
 //    @SkipAuthentication
-    public UserInfo login(@PathVariable("id") Integer id, @AuthenticationParam String userEmail){
+    public UserInfo login(@PathVariable("id") Integer id, @AuthenticationParam String value){
         return userInfoService.getUserInfo(id);
     }
 

@@ -1,5 +1,9 @@
 package com.me.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.me.entity.PageData;
 import com.me.entity.SeckillResult;
 import com.me.entity.SeckillUrlExposer;
 import com.me.enums.OrderStatusEnum;
@@ -9,7 +13,9 @@ import com.me.mysql.domain.SeckillInventoryExample;
 import com.me.mysql.domain.SeckillSuccess;
 import com.me.mysql.mapper.SeckillSuccessMapper;
 import com.me.mysql.mapper.extension.SeckillInventoryMapper;
+import com.me.taskConfig.TaskAnno;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +36,7 @@ import java.util.List;
  * @date 2019-01-24 17:49
  */
 @Service
+@Slf4j
 public class SeckillService {
 
     private static final String salt = "dajspofj212498142*&^^^)";
@@ -40,6 +47,7 @@ public class SeckillService {
     @Autowired
     private SeckillSuccessService seckillSuccessService;
 
+    @TaskAnno("task1")
     public String getMD5(Long phone) {
         if (phone == null) {
             throw new SeckillException("用户手机号为空。", -1);
@@ -62,6 +70,7 @@ public class SeckillService {
         }
         //2. 减库存
         int number = seckillInventoryMapper.updateSeckillInventory(productId);
+
         //3. 插成功表
         if (number <= 0){
             throw new SeckillException("秒杀失败",-1);
@@ -71,13 +80,11 @@ public class SeckillService {
             seckillSuccess.setProductId(productId);
             seckillSuccess.setStatus(OrderStatusEnum.WaitToPay.getId());
             seckillSuccess.setCreateTime(LocalDateTime.now());
-            seckillSuccessService.insertSuccess(seckillSuccess);
+            SeckillResult result = seckillSuccessService.insertSuccess(seckillSuccess);
+//        throw new SeckillException("秒杀失败",-1);
             return new SeckillResult("秒杀成功待付款",0);
         }
     }
-
-
-
     /**
      * 获取暴露的秒杀地址，如果符合要求即可调秒杀地址
      * 否则 显示倒计时
@@ -101,8 +108,12 @@ public class SeckillService {
 
 
     public List<SeckillInventory> getSeckillInventoryList() {
-
-        return null;
+        PageHelper.startPage(1,1);
+        List<SeckillInventory> list =  seckillInventoryMapper.selectByExample(null);
+        log.debug("list "+list);
+        PageData<SeckillInventory> pageData = new PageData<>(1,1,5);
+        pageData.setItems(list);
+        return pageData.getItems();
     }
 }
 

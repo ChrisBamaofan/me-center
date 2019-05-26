@@ -3,6 +3,7 @@ package com.me.controller;
 import com.me.mysql.domain.BaseControl;
 import com.me.mysql.domain.BaseControlExample;
 import com.me.mysql.mapper.BaseControlMapper;
+import com.me.spring.web.handler.annotation.MorphedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019-01-28 17:24
  */
 @RestController
+@MorphedResponse
 public class BaseControlController {
 
     @Autowired

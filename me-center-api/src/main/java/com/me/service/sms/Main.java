@@ -7,11 +7,13 @@ package com.me.service.sms;
 public class Main {
     public static void main(String[] args) {
         // how to get this ctx, 1. frontend✔       2.db,
-//        AlpSmsContext smsContext = getSmsContextByType();
 //        // ✔
 //        TemplateInfo ctx = getTemplateByType(type);
 //        // ?
 //        String content = getSmsContentBySmsType(smsContext,type);
+//        // send sms by type  phone到底发给谁 1.frontend 2. if else- type
+//        sender.send(ctx,content,type);
+//        AlpSmsContext smsContext = getSmsContextByType();
 
         // 获取到模板
     }

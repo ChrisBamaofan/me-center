@@ -14,7 +14,11 @@ public class TemplateInfo {
 
     private String testId;
     private Integer intssss;
+<<<<<<< HEAD
     private Integer intsssaas;
     private String dev;
+=======
+    private String test2;
+>>>>>>> Merge branch 'master' of https://github.com/ChrisBamaofan/me-center
 }
 

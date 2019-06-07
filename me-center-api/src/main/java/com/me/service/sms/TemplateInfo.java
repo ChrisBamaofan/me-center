@@ -14,5 +14,6 @@ public class TemplateInfo {
 
     private String testId;
     private Integer intssss;
+    private Integer intsssaas;
 }
 

@@ -12,5 +12,7 @@ public class TemplateInfo {
     private String templateId;
     private String templateContent;
 
+    private String testId;
+    private Integer intssss;
 }
 

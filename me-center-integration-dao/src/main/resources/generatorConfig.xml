@@ -12,9 +12,9 @@
         </plugin>
         <!--解决xml重新生成时重复生成的问题 -->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
-        <!--<plugin type="com.tuhu.mybatis.generator.plugins.FieldDefaultValuePlugin"/>
-        <plugin type="com.tuhu.mybatis.generator.plugins.FieldAnnotationPlugin"/>
-        <plugin type="com.tuhu.mybatis.generator.plugins.SqlServerWithNolockPlugin" />-->
+        <!--<plugin type="com.mecenter.mybatis.generator.plugins.FieldDefaultValuePlugin"/>
+        <plugin type="com.mecenter.mybatis.generator.plugins.FieldAnnotationPlugin"/>
+        <plugin type="com.mecenter.mybatis.generator.plugins.SqlServerWithNolockPlugin" />-->
 
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
@@ -23,7 +23,11 @@
         </commentGenerator>
 
         <!-- db info -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/dev" userId="root" password="51804991"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rm-bp1d9jke02mo9c7o8ao.mysql.rds.aliyuncs.com:3306/zhj_nb"
+                        userId="zhj_personal_0"
+                        password="51804991">
+        </jdbcConnection>
 
 
         <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">

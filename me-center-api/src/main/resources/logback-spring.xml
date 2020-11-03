@@ -88,8 +88,8 @@
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>ERROR</level>
                 </filter>
-                <!--<filter class="com.tuhu.finance.utils.common.filter.SentrySwitchFilter" />-->
-                <dsn>http://5e9bcb04a712490c9f5ca40f58305f03:589ad3eb18594bd6af21ff20f6c90271@netscaler.ad.tuhu.cn:9000/147</dsn>
+                <!--<filter class="com.mecenter.finance.utils.common.filter.SentrySwitchFilter" />-->
+                <dsn>http://5e9bcb04a712490c9f5ca40f58305f03:589ad3eb18594bd6af21ff20f6c90271@netscaler.ad.mecenter.cn:9000/147</dsn>
             </appender>
         </then>
     </if>
@@ -97,7 +97,7 @@
     <if condition='property("elkEnable").contains("true")'>
         <then>
             <appender name="ELK"
-                      class="com.tuhu.finance.logback.appender.rabbitmq.RabbitMQAppender">
+                      class="com.mecenter.finance.logback.appender.rabbitmq.RabbitMQAppender">
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                     <level>INFO</level>
                 </filter>
@@ -114,7 +114,7 @@
                 <queueDurable>true</queueDurable>
                 <identifier>${elkIdentifier}</identifier>
                 <clientProvidedName>${elkClientProvidedName}</clientProvidedName>
-                <layout class="com.tuhu.finance.logback.appender.rabbitmq.JSONLayout" />
+                <layout class="com.mecenter.finance.logback.appender.rabbitmq.JSONLayout" />
             </appender>
         </then>
     </if>
